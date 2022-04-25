@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Titanic Survival</title>
+
+  <!-- Bring in our bootstrap stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+</head>
+<body>
+  <div class="container py-5">
+      <div class="jumbotron text-white jumbotron-image shadow" style="background-image: url('static/images/Titanic2.jpg');">
+        <h2 class="mb-4">
+          Would you survive the Titanic shipwreck?
+        </h2>
+        <p class="mb-4"> 
+          <strong>Come Find Out!</strong>
+        </p>
+        <a href="/overview" class="btn btn-primary">Data Overview</a>
+      </div>
+    </div>
+
+    <form action='/predict' method="POST" class="row gx-3 by-2 align-items-center"> 
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeInputName">Ticket Price</label>
+        <!-- This is the first input box -->
+        <input type="text" class="form-control" id="ticketPrice" placeholder="Insert Ticket Price" name="price" required="required" {% if ticketPrice %} value={{ticketPrice}} {% endif %}>
+        <br>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeInputName">Passenger Age</label>
+        <!-- This is the second input box -->
+        <input type="text" class="form-control" id="passengerAge" placeholder="Insert Passenger Age" name="age" required="required" {% if passengerAge %} value={{passengerAge}} {% endif %}>
+        <br>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeInputName"># of Siblings & Spouses</label>
+        <!-- This is the third input box -->
+        <input type="text" class="form-control" id="siblingsSpouses" placeholder="Insert # of Siblings & Spouses" name="sibsp" required="required" {% if singblingsSpouses %} value={{singblingsSpouses}} {% endif %}>
+        <br>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeInputName"># of Parents & Children</label>
+        <!-- This is the fourth input box -->
+        <input type="text" class="form-control" id="parentsChildren" placeholder="Insert # of Parents & Children" name="parch" required="required" {% if parentsChildren %} value={{parentsChildren}} {% endif %}>
+        <br>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeSelect">Ticket Class</label>
+        <!-- This is the first drop down box -->
+        <select class="form-select" id="ticketClass" name="class" required>
+        <!-- <select class="form-select" id="ticketClass" name="class" {% if ticketClass %} value={{ticketClass}} {% endif %} required></select> -->
+          <option value="">Choose...</option>
+          <option value="1">First</option>
+          <option value="2">Second</option>
+          <option value="3">Third</option>
+        </select>
+      </div>
+      
+      <div class="col-sm-5">
+        <label class="visually-hidden" for="specificSizeSelect">Gender</label>
+        <!-- This is the second drop down box -->
+        <select class="form-select" id="genderMF" name="gender" required="required">
+        <!-- <select class="form-select" id="genderMF" name="gender" required="required" {% if genderMF %} value={{genderMF}} {% endif %}> -->
+        <!-- <select class="form-select" id="genderMF" name="gender" {% if genderMF %} value="1" {% endif %}> -->
+          <option value="">Choose...</option>
+          <option value="1">Female</option>
+          <option value="0">Male</option>
+        </select>
+      </div>
+
+      <div class="col-auto">
+        <!-- This is our submit button -->
+        <button type="submit" value="Submit" class="btn btn-primary">Predict</button>
+      </div>
+    </form>
+    <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3><center>RESULTS ARE:</center></h3>
+      <!-- <p><center>{{ticketPrice}}</center></p>
+      <p><center>{{genderMF}}</center></p> -->
+      <p><center>This Passenger {{result}}!</center></p>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <p>Every night in my dreams
+        I see you, I feel you,
+        That is how I know you go on.
+        Far across the distance
+        And spaces between us,
+        you have come to show you go on.
+        Near, far, wherever you are
+        I believe that the heart does go on.
+        Once more, you open the door
+        And you're here in my heart
+        And my heart will go on and on.
+        Love can touch us one time
+        And last for a lifetime
+        And never let go 'til we're gone.</p>
+    </div>
+    <div class="col-md-3">
+      <p>Love was when I loved you,
+        one true time I'd hold to.
+        In my life, we'll always go on.
+        Near, far, wherever you are
+        I believe that the heart does go on (why does the heart go on?)
+        Once more, you open the door
+        And you're here in my heart
+        And my heart will go on and on.</p>
+    </div>
+    <div class="col-md-3">
+      <p>You're here, there's nothing I fear
+        and I know that my heart will go on.
+        We'll stay forever this way,
+        you are safe in my heart and
+        my heart will go on and on.</p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Songwriters: James Horner / Will Jennings
+        My Heart Will Go On lyrics © Capitol CMG Publishing, Exploration Group LLC, Integrity Music, Songtrust Ave, Sony/ATV Music Publishing LLC, Universal Music Publishing Group
+      </p>
+    </div>
+  </div>
+  
+  <div class ="bg" style="background-image: url('static/images/iceberg.jpg');">
+  </div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
